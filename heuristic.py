@@ -82,7 +82,6 @@ def checkSequence(board, player, length):
 
         return total
 
-
     count = 0
     # for each piece in the board...
     for row in range(BOARD_HEIGHT):

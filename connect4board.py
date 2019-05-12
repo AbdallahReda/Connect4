@@ -51,19 +51,17 @@ def isColumnValid(Board, Col):
     if Board[0][Col] == ' ':
         return True
     
+def isRangeValid(row, col):
+    if row >= 0 and col >= 0 and row < 6 and col < 7:
+        return True
+    return False 
+
 def getValidMoves(Board):
     Columns = []
     for Col in range(BOARD_WIDTH):
         if isColumnValid(Board, Col):
             Columns.append(Col)
     return Columns
-
-
-def isRangeValid(row, col):
-    if row >= 0 and col >= 0 and row < 6 and col < 7:
-        return True
-    return False 
-
 
 
 def gameIsOver(state):
@@ -95,11 +93,11 @@ def makeMove(board, col, player):
             return tempBoard,row,col   
 
 
-def isLegalMove(column, state):
+def isLegalMove(column, board):
     """ Boolean function to check if a move (column) is a legal move
     """
-    for i in range(6):
-        if state[i][column] == ' ':
+    for row in range(6):
+        if board[row][column] == ' ':
             # once we find the first empty, we know it's a legal move
             return True
     # if we get here, the column is full
@@ -147,7 +145,7 @@ def findFours(board):
 
         return fourInARow , winner
     
-    def diagonalCheck( row, col):
+    def diagonalCheck(row, col):
         fourInARow = False
         count = 0
         slope = None
@@ -199,7 +197,7 @@ def findFours(board):
         return fourInARow, slope , winner
 
 
-
+    magical = False
     """ Finds start i,j of four-in-a-row
         Calls highlightFours
     """
@@ -210,19 +208,22 @@ def findFours(board):
                 fourInARow , winner = verticalCheck(rowIndex, colIndex)
                 if fourInARow:
                     highlightFour(board, rowIndex, colIndex, 'vertical')
+                    magical = True
                     
                 fourInARow , winner = horizontalCheck(rowIndex, colIndex)
                 # check if a horizontal four-in-a-row starts at (i, colIndex)
                 if fourInARow:
                     highlightFour(board, rowIndex, colIndex, 'horizontal')
+                    magical = True
                 
                 # check if a diagonal (either way) four-in-a-row starts at (i, colIndex)
                 # also, get the slope of the four if there is one
                 fourInARow, slope , winner = diagonalCheck(rowIndex, colIndex)
                 if fourInARow:
                     highlightFour(board, rowIndex, colIndex, 'diagonal', slope)
+                    magical = True
 
-    return fourInARow , winner
+    return magical , winner
 
 
 def highlightFour(board,row, col, direction, slope=None):
@@ -249,6 +250,12 @@ def highlightFour(board,row, col, direction, slope=None):
     
     else:
         print("Error - Cannot enunciate four-of-a-kind")
+
+
+def check4InARow(board):
+    tempBoard = deepcopy(board)
+    fourInARow , winner = findFours(tempBoard)
+    return fourInARow , winner
 
 
 def checkFours(Board, row, col):

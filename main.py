@@ -18,49 +18,95 @@ def human(Board):
     return Col
 
 
+def mainFucntion():
+    emptyBoard = []
+    Board = initializeBoard(emptyBoard)
+    printBoard(Board)
+    depth = int(input("Enter Diff: "),10)
+
+    
+    while(1):
+
+        if isBoardFilled(Board) :
+            print("GAME OVER")
+            break
 
 
+        #HUMAN
+        HumanTurnCol = human(Board)
+        HumanMove    = 'x'
+        Board, row , col = makeMove(Board, HumanTurnCol, HumanMove)
+        FourInRow , _ = findFours(Board)
+        if FourInRow:
+            printBoard(Board)
+            print('                   '+'\033[0;34;47m'+"HUMAN WINS!!!" +'\033[1;37;40m')
+            playagain = True if input('Do you want to play again (y/n)?') == 'y' else False
+            if playagain:
+                mainFucntion()
+            break
+
+        #AI
+        aiMove    = 'o'
+        aiTurnCol  = MiniMaxAlphaBeta(Board, depth, aiMove)
+        Board ,row , col = makeMove(Board, aiTurnCol, aiMove)
+        FourInRow , _ = findFours(Board)
+        if FourInRow:
+            printBoard(Board)
+            print('                   '+'\033[0;31;47m'+"AI WINS!!!" +'\033[1;37;40m')
+            playagain = True if input('Do you want to play again (y/n)?') == 'y' else False
+            if playagain:
+                mainFucntion()
+            break
+
+        printBoard(Board)
+
+
+
+mainFucntion()
+
+
+
+
+
+'''
 emptyBoard = []
 Board = initializeBoard(emptyBoard)
-#Board[0][0] = 'x'
-#oard[1][0] = 'x'
-#Board[2][0] = 'x'
-#Board[3][0] = 'x'
-#Board[4][0] = 'x'
-#Board[5][0] = 'x'
-#Board[5][1] = 'x'
-#Board[4][1] = 'o'
 printBoard(Board)
 depth = int(input("Enter Diff: "),10)
 
-
+playagain = False
 while(1):
 
     if isBoardFilled(Board) :
         print("GAME OVER")
         break
 
+
     #HUMAN
     HumanTurnCol = human(Board)
     HumanMove    = 'x'
     Board, row , col = makeMove(Board, HumanTurnCol, HumanMove)
-    if checkFours(Board, row, col)[0]:
-        findFours(Board)
+    FourInRow , _ = findFours(Board)
+    if FourInRow:
         printBoard(Board)
-        print('                   '+'\033[0;34;47m'+"HUMAN WINS!!!" +'\033[1;37;40m')        
-        break
+        print('                   '+'\033[0;34;47m'+"HUMAN WINS!!!" +'\033[1;37;40m')
+        playagain = True if input('Do you want to play again (y/n)?') == 'y' else False
 
+        if playagain:
+
+        break
 
     #AI
     aiMove    = 'o'
     aiTurnCol  = MiniMaxAlphaBeta(Board, depth, aiMove)
     Board ,row , col = makeMove(Board, aiTurnCol, aiMove)
-    if checkFours(Board, row, col)[0]:
-        findFours(Board)[0]
+    FourInRow , _ = findFours(Board)
+    if FourInRow:
         printBoard(Board)
         print('                   '+'\033[0;31;47m'+"AI WINS!!!" +'\033[1;37;40m')
-        #piece1  = checkFours(Board, row, col)[1]
         break
 
-
     printBoard(Board)
+
+
+'''
