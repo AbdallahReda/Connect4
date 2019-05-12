@@ -1,4 +1,4 @@
-from connect4board import *
+from board import *
 from random import shuffle
 
 def MiniMaxAlphaBeta(board, depth, player):
@@ -30,14 +30,14 @@ def minimizeBeta(board, depth, a, b, player, opponent):
     validMoves = []
     for col in range(7):
         # if column col is a legal move...
-        if isLegalMove(col, board):
+        if isValidMove(col, board):
             # make the move in column col for curr_player
             temp = makeMove(board, col, player)[2]
             validMoves.append(temp)
 
     # check to see if game over
     if depth == 0 or len(validMoves) == 0 or gameIsOver(board):
-        return heuristicValue(board, player)
+        return utilityValue(board, player)
     
     validMoves = getValidMoves(board) 
     beta = b
@@ -58,13 +58,13 @@ def maximizeAlpha(board, depth, a, b, player, opponent):
     validMoves = []
     for col in range(7):
         # if column col is a legal move...
-        if isLegalMove(col, board):
+        if isValidMove(col, board):
             # make the move in column col for curr_player
             temp = makeMove(board, col, player)[2]
             validMoves.append(temp)
     # check to see if game over
     if depth == 0 or len(validMoves) == 0 or gameIsOver(board):
-        return heuristicValue(board, player)
+        return utilityValue(board, player)
 
     alpha = a        
     # if end of tree, evaluate scores
