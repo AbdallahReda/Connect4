@@ -4,8 +4,8 @@
 ### The entire game is developed by a group of students at 4th Year Computer and System Engineering Ainshams University
 
 ### Team Members:
-- [AbdulrahmanMahmoud](github.com/AbdulrahmanMahmoud13)
-- [AbdallahReda](github.com/AbdallahReda)
+- [AbdulrahmanMahmoud](https://github.com/AbdulrahmanMahmoud13)
+- [AbdallahReda](https://github.com/AbdallahReda)
 
 ### Game Features:
 - User has 'x' move with blue color while the computer has 'o' with red color
