@@ -1,7 +1,23 @@
 # Connect4
-Connect 4 Game implemented using minimax alpha beta pruning algorithm
+### Connect 4 Console-Game based on minimax alpha beta pruning algorithm
 
-just run the main.py file , set difficulty to value > 1 and then start playing
+### The entire game is developed by a group of students at 4th Year Computer and System Engineering Ainshams University
+
+### Team Members:
+- [AbdulrahmanMahmoud](github.com/AbdulrahmanMahmoud13)
+- [AbdallahReda](github.com/AbdallahReda)
+
+### Game Features:
+- User has 'x' move with blue color while the computer has 'o' with red color
+- User can play at different difficulty levels (from 1 to 4 as 1 is the easiest level)
+- User can save the current state of the game board to continue playing later
+- User can load any save states of the game board to continue playing it
+- User can play again when the game is ended without need to run the files from begining
+
+### Operation
+- Run the exe file found in the executble foler and enjoy the game
+#### OR
+- Run the main.py file and start to play
 ```
 python main.py
 ```
