@@ -1,8 +1,15 @@
 from minimaxAlphaBeta import *
 
+RED     = '\033[1;31;40m'
+YELLOW  = '\033[1;33;40m'
+BLUE    = '\033[1;34;40m'
+MAGENTA = '\033[1;35;40m'
+CYAN    = '\033[1;36;40m'
+WHITE   = '\033[1;37;40m'
 
 dir_path = os.getcwd()
 os.chdir(dir_path)
+
 
 def saveParser(board, filename):
     def parseRow(row):
@@ -18,9 +25,9 @@ def saveParser(board, filename):
     return True
 
 def saveBoard(board):
-    saveFile = True if input('DO YOU WANT TO SAVE BOARD AND QUIT(y/n)? ') == 'y' else False
+    saveFile = True if input(YELLOW + 'DO YOU WANT TO SAVE BOARD AND QUIT(y/n)? ' + WHITE) == 'y' else False
     if saveFile:
-        filename = input('ENTER FILE NAME: ')        
+        filename = input(CYAN + 'ENTER FILE NAME: ' + WHITE)        
         if saveParser(board,filename):
             return True
 
@@ -44,9 +51,9 @@ def loadParser(filename):
     return board
 
 def loadBoard():
-    loadFlag = True if input('DO YOU WANT TO LOAD A BOARD(y/n)? ') == 'y' else False
+    loadFlag = True if input(YELLOW + 'DO YOU WANT TO LOAD A BOARD(y/n)? ' + WHITE).lower() == 'y' else False
     if loadFlag:
-        filename = input('ENTER FILE NAME: ')
+        filename = input(CYAN + 'ENTER FILE NAME: ' + WHITE)
         board = loadParser(filename)
         return board, loadFlag
     else:
@@ -54,19 +61,19 @@ def loadBoard():
 
 
 def playerTurn(board):
-    Col = input("Choose a Column between 1 and 7: ")
+    Col = input(YELLOW + 'Choose a Column between 1 and 7: ' + WHITE)
     if not(Col.isdigit()):
-        print("Input must be integer!")
+        print(MAGENTA + "Input must be integer!" + WHITE)
         return playerTurn(board)
 
     playerMove = int(Col) - 1
 
     if playerMove < 0 or playerMove > 6:
-        print("Column must be between 1 and 7!")
+        print(MAGENTA + "Column must be between 1 and 7!" + WHITE)
         return playerTurn(board)
 
     if not(isColumnValid(board, playerMove)):
-        print("The Column you select is full!")
+        print(MAGENTA + "The Column you select is full!" + WHITE)
         return playerTurn(board)
 
 
@@ -76,8 +83,8 @@ def playerTurn(board):
 
 def playerWins(board):
     printBoard(board)
-    print('                    '+'\033[1;34;40m'+"HUMAN WINS !!\n" +'\033[1;37;40m')
-    playagain = True if input('\033[1;33;40m'+'DO YOU WANT TO PLAY AGAIN(y/n)?'+'\033[1;37;40m') == 'y' else False
+    print('                    '+BLUE+"HUMAN WINS !!\n" +WHITE)
+    playagain = True if input(YELLOW +'DO YOU WANT TO PLAY AGAIN(y/n)?'+WHITE) == 'y' else False
     #saveBoard(board)
     if playagain:
         mainFucntion()
@@ -92,48 +99,32 @@ def aiTurn(board,depth):
 
 def aiWins(board):
     printBoard(board)
-    print('                     '+'\033[1;31;40m'+"AI WINS !!!!\n" +'\033[1;37;40m')
-    playagain = True if input('\033[1;33;40m'+'DO YOU WANT TO PLAY AGAIN(y/n)?'+'\033[1;37;40m') == 'y' else False
+    print('                     '+RED+"AI WINS !!!!\n" +'\033[1;37;40m')
+    playagain = True if input(YELLOW+'DO YOU WANT TO PLAY AGAIN(y/n)?'+WHITE) == 'y' else False
     #saveBoard(board)
     if playagain:
         mainFucntion()
     return 0
 
 
-def whomTurn(board):
-    playerCount = 0
-    aiCount = 0
-    for row in range(BOARD_HEIGHT):
-        for col in range(BOARD_WIDTH):
-            if board[row][col] == 'o' or board[row][col] == 'O':
-                aiCount +=1
-            elif board[row][col] == 'x' or board[row][col] == 'X':
-                playerCount +=1
-    if playerCount > aiCount:
-        return False
-    elif playerCount == aiCount:
-        return True
-    #elif playerCount <
-
-
 def getDepth():
-    depth = input('ENTER DIFFICULTY(1-4): ')
+    depth = input(YELLOW + 'ENTER DIFFICULTY(1-5): ' + WHITE)
     if not(depth.isdigit()):
-        print("Input must be integer!")
+        print(MAGENTA + 'Input must be integer!' + WHITE)
         return getDepth()
 
     depth = int(depth,10) 
 
-    if depth < 1 or depth > 4:
-        print("Depth must be between 1 and 4!")
+    if depth < 1 or depth > 5:
+        print(MAGENTA + "Difficulty must be between 1 and 5!" + WHITE)
         return getDepth()
 
     return depth
 
 def mainFucntion():
     #board = initializeBoard()
+    os.system('cls' if os.name == 'nt' else 'clear')
     board, loadFlag = loadBoard()
-    playerStart = False
     if board == None:
         board = initializeBoard()
     printBoard(board)
@@ -142,13 +133,13 @@ def mainFucntion():
     if loadFlag == True:
         whomStart = True
     else:
-        whomStart = True if input('DO YOU WANT TO START(y/n)? ') == 'y' else False
+        whomStart = True if input(YELLOW + 'DO YOU WANT TO START(y/n)? ' + WHITE).lower() == 'y' else False
     if board == None:
         board = initializeBoard()
 
     while(whileCondition):
         if isBoardFilled(board) :
-            print("GAME OVER")
+            print("GAME OVER\n")
             break
 
         if whomStart:
@@ -166,7 +157,7 @@ def mainFucntion():
                 if whileCondition ==0:
                     break
             printBoard(board)
-
+  
             if saveBoard(board):
                 break
         else:
@@ -191,53 +182,4 @@ def mainFucntion():
 
             printBoard(board)
 
-
-
-
 mainFucntion()
-
-
-'''
-    if Col == 's':
-        filename = input('Enter FileName to save:')
-        saveBoard(Board, 'testfile')
-        return human(Board)
-
-    if Col == 'l':
-        filename = input('Enter FileName to load:')
-        Board = loadBoard(filename)
-        emptyLocations = 42 - getEmptyLocations(Board)
-        if emptyLocations %2 == 1:
-            return human(Board)
-
-
-
-            def mainFucntion():
-    board = initializeBoard()
-    printBoard(board)
-    depth = int(input("Enter Diff: "),10)
-
-    while(1):
-        if isBoardFilled(board) :
-            print("GAME OVER")
-            break
-
-        HumanTurnCol = playerTurn(board)
-        HumanMove    = 'x'
-        board, _ , _ = makeMove(board, HumanTurnCol, HumanMove)
-        FourInRow  = findFours(board)
-        if FourInRow:
-            printBoard(board)
-            print('                    '+'\033[0;34;47m'+"HUMAN WINS !!\n" +'\033[1;37;40m')
-            playagain = True if input('\033[1;33;40m'+'DO YOU WANT TO PLAY AGAIN(y/n)?'+'\033[1;37;40m') == 'y' else False
-            if playagain:
-                mainFucntion()
-            break
-
-        #AI
-        board, aiFourInRow = aiTurn(board,depth)
-        if aiFourInRow:
-            aiWins(board)
-
-        printBoard(board)
-'''
