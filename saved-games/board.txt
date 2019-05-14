@@ -1,0 +1,13 @@
+Load the following board or edit it
+The parser should cut from first dot in the file 
+or after underscores directly
+The saver should also make user choose the name of file
+The saved file must contain legend format help user edit easily
+For example load the following board into our programs
+__________________
+. . . . . . .
+. . . . . . .
+. . . . . . .
+. . . . . . .
+. . . x o x .
+x o o x x o o
