@@ -1,8 +1,17 @@
 import os
 import math
-import random
 from copy import deepcopy
 from utility import *
+
+RED     = '\033[1;31;40m'
+RED_BG  = '\033[0;31;47m'
+BLUE_BG = '\033[0;34;47m'
+YELLOW  = '\033[1;33;40m'
+BLUE    = '\033[1;34;40m'
+MAGENTA = '\033[1;35;40m'
+CYAN    = '\033[1;36;40m'
+WHITE   = '\033[1;37;40m'
+
 
 
 #make an empty board
@@ -213,27 +222,26 @@ def getEmptyLocations(board):
 
 def printBoard(Board):
     #clear console/terminal screen
-    #os.system( [ 'clear', 'cls' ][ os.name == 'nt' ] )
     os.system('cls' if os.name == 'nt' else 'clear')
     emptyLocations = 42 - getEmptyLocations(Board) #get empty locations
     print('')
-    print('\033[1;33;40m' + '         ROUND #' + str(emptyLocations) + '\033[1;37;40m', end=" ")   #print round number
+    print(YELLOW + '         ROUND #' + str(emptyLocations) + WHITE, end=" ")   #print round number
     print('')
     print('')
     print("\t      1   2   3   4   5   6   7 ")
     print("\t      -   -   -   -   -   -   - ")
 
     for i in range(0, BOARD_HEIGHT, 1):
-        print('\033[1;37;40m'+"\t",i+1,' ',end="")
+        print(WHITE+"\t",i+1,' ',end="")
         for j in range(BOARD_WIDTH):
             if str(Board[i][j]) == 'x':
-                print("| " + '\033[1;34;40m' + str(Board[i][j]) +'\033[1;37;40m', end=" ")   #print colored 'x'
+                print("| " + BLUE + str(Board[i][j]) +WHITE, end=" ")   #print colored 'x'
             elif str(Board[i][j]) == 'o':
-                print("| " + '\033[1;31;40m' + str(Board[i][j]) +'\033[1;37;40m', end=" ")   #print colored 'o'
+                print("| " + RED + str(Board[i][j]) +WHITE, end=" ")   #print colored 'o'
             elif str(Board[i][j]) == 'X':
-                print("| " + '\033[0;34;47m' + str(Board[i][j]) +'\033[1;37;40m', end=" ")   #print colored 'X'
+                print("| " + BLUE_BG + str(Board[i][j]) +WHITE, end=" ")   #print colored 'X'
             elif str(Board[i][j]) == 'O':
-                print("| " + '\033[0;31;47m' + str(Board[i][j]) +'\033[1;37;40m', end=" ")   #print colored 'O'
+                print("| " + RED_BG + str(Board[i][j]) +WHITE, end=" ")   #print colored 'O'
             else:
                 print("| " + str(Board[i][j]), end=" ")
 
