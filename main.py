@@ -25,7 +25,7 @@ def saveParser(board, filename):
     return True
 
 def saveBoard(board):
-    saveFile = True if input(YELLOW + 'DO YOU WANT TO SAVE BOARD AND QUIT(y/n)? ' + WHITE) == 'y' else False
+    saveFile = True if input(YELLOW + 'DO YOU WANT TO SAVE BOARD AND QUIT(y/n)? ' + WHITE).lower() == 'y' else False
     if saveFile:
         filename = input(CYAN + 'ENTER FILE NAME: ' + WHITE)        
         if saveParser(board,filename):
@@ -84,7 +84,7 @@ def playerTurn(board):
 def playerWins(board):
     printBoard(board)
     print('                    '+BLUE+"HUMAN WINS !!\n" +WHITE)
-    playagain = True if input(YELLOW +'DO YOU WANT TO PLAY AGAIN(y/n)?'+WHITE) == 'y' else False
+    playagain = True if input(YELLOW +'DO YOU WANT TO PLAY AGAIN(y/n)?'+WHITE).lower() == 'y' else False
     #saveBoard(board)
     if playagain:
         mainFucntion()
