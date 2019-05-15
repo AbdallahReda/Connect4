@@ -100,7 +100,7 @@ def aiTurn(board,depth):
 def aiWins(board):
     printBoard(board)
     print('                     '+RED+"AI WINS !!!!\n" +'\033[1;37;40m')
-    playagain = True if input(YELLOW+'DO YOU WANT TO PLAY AGAIN(y/n)?'+WHITE) == 'y' else False
+    playagain = True if input(YELLOW+'DO YOU WANT TO PLAY AGAIN(y/n)?'+WHITE).lower() == 'y' else False
     #saveBoard(board)
     if playagain:
         mainFucntion()
