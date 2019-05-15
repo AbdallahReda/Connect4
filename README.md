@@ -1,6 +1,8 @@
 # Connect4
 ### Connect 4 Console-Game based on minimax alpha beta pruning algorithm
 
+### Youtube demo can be found [here](https://www.youtube.com/watch?v=ezdxt7kZKMQ)
+
 ### The entire game is developed by a group of students at 4th Year Computer and System Engineering Ainshams University
 
 ### Team Members:
