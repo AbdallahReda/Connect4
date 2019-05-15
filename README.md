@@ -3,11 +3,13 @@
 
 ### Youtube demo can be found [here](https://www.youtube.com/watch?v=ezdxt7kZKMQ)
 
+### For more code description and user guide a full report for the project is [attached](https://github.com/AbdallahReda/Connect4/blob/master/Report.pdf)
+
 ### The entire game is developed by a group of students at 4th Year Computer and System Engineering Ainshams University
 
 ### Team Members:
-- [AbdulrahmanMahmoud](https://github.com/AbdulrahmanMahmoud13)
-- [AbdallahReda](https://github.com/AbdallahReda)
+- [Abdulrahman Mahmoud](https://github.com/AbdulrahmanMahmoud13)
+- [Abdallah Reda](https://github.com/AbdallahReda)
 
 ### Game Features:
 - User has 'x' move with blue color while the computer has 'o' with red color
