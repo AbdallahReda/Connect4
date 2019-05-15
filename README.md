@@ -17,9 +17,9 @@
     - NOTE : the boards are saved in 'saved-games' folder 
 
 ### Operation
-- Run the exe file found in the executble foler and enjoy the game
+- Run the [game.exe](https://github.com/AbdallahReda/Connect4/blob/master/executable/connect4.exe) file found in the [executable](https://github.com/AbdallahReda/Connect4/blob/master/executable) foler and enjoy the game
 #### OR
-- Run the main.py file and start to play
+- Run the [main.py](https://github.com/AbdallahReda/Connect4/blob/master/main.py) file and start to play
 ```
 python main.py
 ```
