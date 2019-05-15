@@ -111,7 +111,7 @@ def utilityValue(board, player):
         return float('-inf')
     else:
         #Return the playerScore minus the opponentScore
-        return playerScore# - opponentScore
+        return playerScore - opponentScore
 
 
 def gameIsOver(board):
